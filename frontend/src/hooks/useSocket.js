@@ -5,13 +5,15 @@ export default function useSocket() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // Use backend URL from environment variable
-    const newSocket = io(import.meta.env.VITE_BACKEND_URL, {
-      transports: ["websocket"], // ensures WebSocket connection
+    // IMPORTANT: deployed backend URL, HTTPS
+    const newSocket = io("https://chatapp-rl4i.onrender.com", {
+      transports: ["websocket"],
+      secure: true,    // enforce HTTPS
+      reconnection: true,
     });
+
     setSocket(newSocket);
 
-    // Cleanup on unmount
     return () => newSocket.disconnect();
   }, []);
 
