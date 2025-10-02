@@ -8,7 +8,7 @@ const app = express();
 
 // Allow frontend to connect (replace with your actual frontend URL)
 app.use(cors({
-  origin: "https://frontend-2mtmt1nug-gnana-jothis-projects.vercel.app",
+  origin: "https://frontend-delta-ten-32.vercel.app",
   methods: ["GET", "POST"]
 }));
 
@@ -18,7 +18,7 @@ const server = createServer(app);
 // Setup Socket.io
 const io = new Server(server, {
   cors: {
-    origin: "https://frontend-2mtmt1nug-gnana-jothis-projects.vercel.app",
+    origin: "https://frontend-delta-ten-32.vercel.app",
     methods: ["GET", "POST"]
   }
 });
