@@ -5,9 +5,14 @@ export default function useSocket() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:5000"); // backend
+    // Use backend URL from environment variable
+    const newSocket = io(import.meta.env.VITE_BACKEND_URL, {
+      transports: ["websocket"], // ensures WebSocket connection
+    });
     setSocket(newSocket);
-    return () => newSocket.close();
+
+    // Cleanup on unmount
+    return () => newSocket.disconnect();
   }, []);
 
   return socket;
